@@ -100,7 +100,7 @@ export default function SearchWeather() {
               </div>
             )}
             {/* City Name */}
-            <div className="ml-16">
+            <div className="flex flex-col items-center justify-center gap-y-2 px-4">
               <p className="text-2xl font-semibold">{officialName}</p>
               <p className="text-lg text-gray-700">
                 {cityWeatherInfo.condition.text}
