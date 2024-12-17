@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import SearchButton from "./ui/SearchButton";
 import { getWeatherInfo } from "@/services/weatherApi";
 import Image from "next/image";
+import WeatherInfoPlaceHolder from "./ui/WeatherInfoPlaceHolder";
+import CityNotFound from "./ui/CityNotFound";
 
 interface CityWeatherInfoProps {
   tempC: string;
   tempF: string;
-  cloud: string;
   condition: {
     text: string;
     icon: string;
@@ -30,14 +31,34 @@ export default function SearchWeather() {
     humidity: "",
     windKph: "",
   });
+  const [isCityExsits, setIsCityExsits] = useState<boolean>(true);
   const [officialName, setOfficialName] = useState<string>("");
 
   const searchCityWeather = async () => {
     const cityInfo = await getWeatherInfo({ city });
+
+    if (cityInfo === false) {
+      console.error("City not found or invalid response");
+      setIsCityExsits(false); //no such city (user mistype)
+      // reset the weather info
+      setCityWeatherInfo({
+        tempC: "",
+        tempF: "",
+        condition: {
+          text: "",
+          icon: "",
+        },
+        humidity: "",
+        windKph: "",
+      });
+      setOfficialName("");
+      return;
+    }
+
+    // Fetch & assign the weather infomation that we need to filteredWeatherInfo cause the reponse contains other uncessary info
     const filteredWeatherInfo: CityWeatherInfoProps = {
       tempC: cityInfo.current.temp_c.toString(),
       tempF: cityInfo.current.temp_f.toString(),
-      cloud: cityInfo.current.cloud.toString(),
       condition: {
         text: cityInfo.current.condition.text,
         icon: cityInfo.current.condition.icon,
@@ -45,8 +66,10 @@ export default function SearchWeather() {
       humidity: cityInfo.current.humidity.toString(),
       windKph: cityInfo.current.wind_kph.toString(),
     };
-    setCityWeatherInfo(filteredWeatherInfo);
+
+    setCityWeatherInfo(filteredWeatherInfo); // setState to WeatherInfo
     setOfficialName(cityInfo.location.name);
+    setIsCityExsits(true); // the city does exsits
   };
 
   return (
@@ -87,7 +110,7 @@ export default function SearchWeather() {
 
           {/* More Weather details */}
           {cityWeatherInfo.humidity ? (
-            <div className="text-center">
+            <div className="text-center mt-4">
               <p>
                 Tempreture: {cityWeatherInfo.tempC}°C/{cityWeatherInfo.tempF}°F
               </p>
@@ -95,21 +118,11 @@ export default function SearchWeather() {
               <p>Wind Speed: {cityWeatherInfo.windKph} KPH</p>
             </div>
           ) : (
-            <div className="flex flex-wrap items-center justify-center mt-10">
-              <div>
-                <Image
-                  src={"/Weather.png"}
-                  alt="Weather Information"
-                  width={100}
-                  height={100}
-                />
-                <p className="mt-4 text-center">Search Weather</p>
-              </div>
-            </div>
+            <>{isCityExsits ? <WeatherInfoPlaceHolder /> : <CityNotFound />}</>
           )}
         </div>
       ) : (
-        <></>
+        <>abc</>
       )}
     </div>
   );
