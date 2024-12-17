@@ -39,8 +39,8 @@ export default function SearchWeather() {
 
     if (cityInfo === false) {
       console.error("City not found or invalid response");
-      setIsCityExsits(false); //no such city (user mistype)
-      // reset the weather info
+      setIsCityExsits(false); // No such city (user mistype)
+      // Reset the weather info
       setCityWeatherInfo({
         tempC: "",
         tempF: "",
@@ -75,9 +75,15 @@ export default function SearchWeather() {
   return (
     <div className="w-96 h-80 bg-blue-100 bg-opacity-80 border-2 border-blue-300 rounded-xl">
       <div className="w-full flex items-center justify-center mt-6">
+        {/* Enter keydown listener to the input */}
         <input
           required
           onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              searchCityWeather(); // Trigger the search on Enter key
+            }
+          }}
           type="text"
           placeholder="Enter city name...."
           className="w-full max-w-[80%] p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -88,7 +94,7 @@ export default function SearchWeather() {
       {cityWeatherInfo ? (
         <div className="w-full grid gird-cols-[170px, 1fr] items-center mt-2">
           <div className="w-full flex items-center justify-center mt-2 ">
-            {/* Weather Image and Condition */}
+            {/* Weather image and condition */}
             {cityWeatherInfo.condition.icon && (
               <div className="flex items-center">
                 <Image
