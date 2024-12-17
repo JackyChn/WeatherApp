@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import SearchButton from "./SearchButton";
+import SearchButton from "./ui/SearchButton";
 import { getWeatherInfo } from "@/services/weatherApi";
 import Image from "next/image";
 
@@ -46,15 +46,11 @@ export default function SearchWeather() {
       windKph: cityInfo.current.wind_kph.toString(),
     };
     setCityWeatherInfo(filteredWeatherInfo);
-    console.log(cityWeatherInfo.condition);
     setOfficialName(cityInfo.location.name);
   };
 
   return (
     <div className="w-96 h-80 bg-blue-100 bg-opacity-80 border-2 border-blue-300 rounded-xl">
-      {/* <h1 className="text-center font-semibold mt-2">
-        Check weather for any city
-      </h1> */}
       <div className="w-full flex items-center justify-center mt-6">
         <input
           required
@@ -90,13 +86,27 @@ export default function SearchWeather() {
           </div>
 
           {/* More Weather details */}
-          <div className="text-center">
-            <p>
-              Tempreture: {cityWeatherInfo.tempC}°C/{cityWeatherInfo.tempF}°F
-            </p>
-            <p>Humidity: {cityWeatherInfo.humidity}%</p>
-            <p>Wind Speed: {cityWeatherInfo.windKph} KPH</p>
-          </div>
+          {cityWeatherInfo.humidity ? (
+            <div className="text-center">
+              <p>
+                Tempreture: {cityWeatherInfo.tempC}°C/{cityWeatherInfo.tempF}°F
+              </p>
+              <p>Humidity: {cityWeatherInfo.humidity}%</p>
+              <p>Wind Speed: {cityWeatherInfo.windKph} KPH</p>
+            </div>
+          ) : (
+            <div className="flex flex-wrap items-center justify-center mt-10">
+              <div>
+                <Image
+                  src={"/Weather.png"}
+                  alt="Weather Information"
+                  width={100}
+                  height={100}
+                />
+                <p className="mt-4 text-center">Search Weather</p>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <></>
