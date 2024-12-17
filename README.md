@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weather App Development Challenge
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+Welcome to our Weather App development challenge! This project is designed to assess your coding skills, creativity, and ability to work with different APIs and responsive design principles. You are free to choose the technology stack (e.g., React, Vue, Angular for frontend; Node.js, Flask, Django for backend, etc.) that best suits your skills.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Objective
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your task is to create a weather application that allows users to search for weather conditions based on their location. The app should dynamically update its background and icons according to the current weather conditions.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Location and Weather Search
 
-## Learn More
+- Implement a search feature that allows users to enter a location (city, zip code, etc.).
+- Display the current weather information for the selected location, including temperature, humidity, wind speed, and a brief description (e.g., sunny, cloudy, rainy).
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Dynamic Background
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- The application's background should change based on the current weather conditions.
+  - Sunny: Bright or sunny background.
+  - Cloudy: Cloudy or overcast background.
+  - Rainy: Rainy or stormy background.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Weather Icons
 
-## Deploy on Vercel
+- Display dynamic weather icons that reflect the current weather condition.
+  - Use distinct icons for sunny, cloudy, and rainy conditions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Responsive Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Ensure that your application is responsive and provides a seamless experience across different devices and screen sizes.
+
+### 5. Deployment (Bonus)
+
+- Optionally, deploy your application to a cloud service (e.g., Vercel, Netlify, Heroku, AWS, etc.). Provide the URL to the deployed application in your submission.
+
+## Evaluation Criteria
+
+- **Functionality**: The app accurately performs all the described features.
+- **Code Quality**: The code is clean, well-organized, and commented where necessary.
+- **Design and User Experience**: The app is intuitive to use and visually appealing.
+- **Creativity and Innovation**: Use of innovative solutions and features to enhance the user experience.
+- **Adaptability**: The application should be responsive and work across different devices and browsers.
+- **Deployment**: Bonus points for successfully deploying the app and sharing a live URL.
+
+## Submission Guidelines
+
+- Your project should be submitted as a link to a GitHub repository.
+- Ensure all commit and push history is open and remains visible in the repository to demonstrate your work process.
+- Include a README file in your repository with:
+  - Instructions on how to run your application.
+  - A brief explanation of your technology choice and any libraries or APIs used.
+  - (If applicable) The URL to the deployed application.
+- Ensure your application does not require any special credentials to run, or provide them in a secure manner within your submission.
+
+## Time Limit
+
+- You have 24 hours from the time you receive this challenge to submit your project.
+
+## Resources
+
+- You may use any public API for weather data, such as OpenWeatherMap, Weatherstack, or any other of your choice.
+- Feel free to use any libraries or frameworks that you are comfortable with to achieve the project goals.
+
+Good luck, and we're excited to see what you build!
