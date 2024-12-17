@@ -1,4 +1,4 @@
-import Weather from "@/components/ui/Weather";
+import SearchWeather from "@/components/ui/SearchWeather";
 import Image from "next/image";
 import React from "react";
 
@@ -14,7 +14,7 @@ export default function HomePage() {
         className="object-cover z-[-10]"
       />
       {/* Main Weather box */}
-      <Weather />
+      <SearchWeather />
     </main>
   );
 }
