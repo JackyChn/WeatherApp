@@ -6,7 +6,7 @@ export async function getWeatherInfo({
   // response may be error if city not exsits, return an object or false (no such city)
   try {
     const res = await fetch(
-      `http://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&q=${city}&aqi=no`,
+      `https://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&q=${city}&aqi=no`,
     );
     if (!res.ok) return false;
 
