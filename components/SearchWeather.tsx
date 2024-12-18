@@ -5,8 +5,8 @@ import { getWeatherInfo } from "@/services/weatherApi";
 import SearchButton from "./ui/SearchButton";
 import Image from "next/image";
 import WeatherInfoPlaceHolder from "./ui/WeatherInfoPlaceHolder";
+import SpinnerMini from "./ui/SpinnerMini";
 import CityNotFound from "./ui/CityNotFound";
-import Spinner from "./ui/Spinner";
 import CityWeatherDetail from "./ui/CityWeatherDetail";
 import CityDes from "./ui/CityDes";
 
@@ -88,14 +88,24 @@ export default function SearchWeather() {
   return (
     <>
       {/* background image */}
-      <Image
-        src={`/${bgType}.jpg`}
-        alt="Background"
-        key={bgType}
-        fill
-        priority
-        className="z-[-10] object-cover transition-all duration-500 ease-in-out"
-      />
+      {!isLoading ? (
+        <Image
+          src={`/${bgType}.jpg`}
+          alt="Background"
+          key={bgType}
+          fill
+          priority
+          className="z-[-10] object-cover transition-all duration-500 ease-in-out"
+        />
+      ) : (
+        <Image
+          src={`/Unknown.jpg`}
+          alt="Background"
+          fill
+          priority
+          className="z-[-10] object-cover transition-all duration-500 ease-in-out"
+        />
+      )}
 
       {/* main */}
       <div className="h-80 w-96 rounded-xl border-2 border-blue-300 bg-blue-100 bg-opacity-80">
@@ -118,7 +128,7 @@ export default function SearchWeather() {
 
         {isLoading ? (
           <div className="flex h-full items-center justify-center">
-            <Spinner />
+            <SpinnerMini />
           </div>
         ) : (
           cityWeatherInfo && (
