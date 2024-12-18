@@ -1,66 +1,100 @@
-# Weather App Development Challenge
+# Weather App
 
-## Introduction
-
-Welcome to our Weather App development challenge! This project is designed to assess your coding skills, creativity, and ability to work with different APIs and responsive design principles. You are free to choose the technology stack (e.g., React, Vue, Angular for frontend; Node.js, Flask, Django for backend, etc.) that best suits your skills.
-
-## Objective
-
-Your task is to create a weather application that allows users to search for weather conditions based on their location. The app should dynamically update its background and icons according to the current weather conditions.
+This project is a weather application that allows users to search for weather information for any city in the world. The background dynamically changes based on the city's current weather conditions (e.g., Sunny, Rainy, Cloudy, etc.) with smooth transitions for enhanced UX.
 
 ## Features
 
-### 1. Location and Weather Search
+- **Dynamic Background**: Changes background images based on weather type (Sunny, Rainy, Cloudy, Snowy).
+- **Search City Weather**: Users can search for any city to retrieve its current weather.
+- **Loading Spinner**: Displays a loading animation while fetching data.
+- **City Not Found Handling**: Displays an error message when the city is not found.
+- **Weather Details**: Shows temperature (Celsius/Fahrenheit), humidity, wind speed, and weather condition.
 
-- Implement a search feature that allows users to enter a location (city, zip code, etc.).
-- Display the current weather information for the selected location, including temperature, humidity, wind speed, and a brief description (e.g., sunny, cloudy, rainy).
+## Tech Stack
 
-### 2. Dynamic Background
+- **Next.js**: React framework for server-side rendering and client-side interactivity.
+- **TypeScript**: Type-safe JavaScript for scalability and maintainability.
+- **Tailwind CSS**: Utility-first CSS for responsive and modern UI design.
+- **Redux Toolkit**: State management for dynamic weather backgrounds.
+- **Weather API**: Retrieves real-time weather data on 'https://www.weatherapi.com/'
 
-- The application's background should change based on the current weather conditions.
-  - Sunny: Bright or sunny background.
-  - Cloudy: Cloudy or overcast background.
-  - Rainy: Rainy or stormy background.
+## Setup Instructions
 
-### 3. Weather Icons
+### Prerequisites
 
-- Display dynamic weather icons that reflect the current weather condition.
-  - Use distinct icons for sunny, cloudy, and rainy conditions.
+- **Node.js**: Ensure Node.js is installed.
+- **NPM or Yarn**: Package manager for dependencies.
 
-### 4. Responsive Design
+### Steps to Run the App
 
-- Ensure that your application is responsive and provides a seamless experience across different devices and screen sizes.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd weather-app
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+   or
+   ```bash
+   yarn install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   or
+   ```bash
+   yarn dev
+   ```
+4. Open the app in your browser:
+   ```
+   http://localhost:3000
+   ```
 
-### 5. Deployment (Bonus)
+## Environment Variables
 
-- Optionally, deploy your application to a cloud service (e.g., Vercel, Netlify, Heroku, AWS, etc.). Provide the URL to the deployed application in your submission.
+Create a `.env.local` file in the root directory and add the following:
 
-## Evaluation Criteria
+```env
+NEXT_PUBLIC_WEATHER_API_KEY=your_api_key_here
+```
 
-- **Functionality**: The app accurately performs all the described features.
-- **Code Quality**: The code is clean, well-organized, and commented where necessary.
-- **Design and User Experience**: The app is intuitive to use and visually appealing.
-- **Creativity and Innovation**: Use of innovative solutions and features to enhance the user experience.
-- **Adaptability**: The application should be responsive and work across different devices and browsers.
-- **Deployment**: Bonus points for successfully deploying the app and sharing a live URL.
+Replace `your_api_key_here` with your Weather API key.
 
-## Submission Guidelines
+## Usage
 
-- Your project should be submitted as a link to a GitHub repository.
-- Ensure all commit and push history is open and remains visible in the repository to demonstrate your work process.
-- Include a README file in your repository with:
-  - Instructions on how to run your application.
-  - A brief explanation of your technology choice and any libraries or APIs used.
-  - (If applicable) The URL to the deployed application.
-- Ensure your application does not require any special credentials to run, or provide them in a secure manner within your submission.
+1. **Search for a City**: Enter a city's name and press **Enter** or click the **Search** button.
+2. **Dynamic Weather Display**: The app fetches weather data and displays the relevant weather condition with an updated background image.
+3. **Error Handling**: If the city does not exist, an appropriate message is shown.
 
-## Time Limit
+## Screenshots
 
-- You have 24 hours from the time you receive this challenge to submit your project.
+### Home Page with Dynamic Background
 
-## Resources
+![Home Page](public/Sunny.jpg)
 
-- You may use any public API for weather data, such as OpenWeatherMap, Weatherstack, or any other of your choice.
-- Feel free to use any libraries or frameworks that you are comfortable with to achieve the project goals.
+### Loading State
 
-Good luck, and we're excited to see what you build!
+![Loading](public/loading.png)
+
+### City Not Found
+
+![Error](public/error.png)
+
+## Future Improvements
+
+- Add hourly and 7-day weather forecasts.
+- Integrate location-based weather retrieval.
+- Enhance animations and UI components.
+
+## License
+
+[Nahh....]
+
+---
+
+### Author
+
+[Jacky]
