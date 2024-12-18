@@ -7,7 +7,7 @@ import Image from "next/image";
 import WeatherInfoPlaceHolder from "./ui/WeatherInfoPlaceHolder";
 import CityNotFound from "./ui/CityNotFound";
 import Spinner from "./ui/Spinner";
-import CityWeatherDetial from "./ui/CityWeatherDetial";
+import CityWeatherDetail from "./ui/CityWeatherDetail";
 
 // 48 weather types in total
 
@@ -133,7 +133,7 @@ export default function SearchWeather() {
 
             {/* More Weather details */}
             {cityWeatherInfo.humidity ? (
-              <CityWeatherDetial
+              <CityWeatherDetail
                 tempC={cityWeatherInfo.tempC}
                 tempF={cityWeatherInfo.tempF}
                 humidity={cityWeatherInfo.humidity}
