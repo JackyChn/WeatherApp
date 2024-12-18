@@ -15,3 +15,7 @@ type WeatherInfo = {
     wind_kph: number;
   };
 };
+
+type WeatherState = {
+  weather: string;
+};
