@@ -29,7 +29,6 @@ export default function SearchWeather() {
   const [cityWeatherInfo, setCityWeatherInfo] = useState<CityWeatherInfoProps>({
     tempC: "",
     tempF: "",
-    cloud: "",
     condition: {
       text: "",
       icon: "",
