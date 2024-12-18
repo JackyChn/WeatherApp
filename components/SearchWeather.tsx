@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import SearchButton from "./ui/SearchButton";
 import { getWeatherInfo } from "@/services/weatherApi";
+import SearchButton from "./ui/SearchButton";
 import Image from "next/image";
 import WeatherInfoPlaceHolder from "./ui/WeatherInfoPlaceHolder";
 import CityNotFound from "./ui/CityNotFound";
 import Spinner from "./ui/Spinner";
 import CityWeatherDetail from "./ui/CityWeatherDetail";
+import CityDes from "./ui/CityDes";
 
 // 48 weather types in total
 
@@ -134,13 +135,11 @@ export default function SearchWeather() {
                   </div>
                 )}
 
-                {/* City Name */}
-                <div className="flex flex-col items-center justify-center gap-y-2 px-4">
-                  <p className="text-2xl font-semibold">{officialName}</p>
-                  <p className="text-lg text-gray-700">
-                    {cityWeatherInfo.condition.text}
-                  </p>
-                </div>
+                {/* City Description */}
+                <CityDes
+                  officialName={officialName}
+                  weather={cityWeatherInfo.condition.text}
+                />
               </div>
 
               {/* More Weather details */}
