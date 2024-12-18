@@ -11,13 +11,19 @@ export default function CityWeatherDetial({
   windSpeed = "",
 }: MoreWeatherDetails) {
   return (
-    <div className="mt-4 text-center">
+    <div className="mt-4 text-center text-black">
       <p>
-        Tempreture: {tempC}°C/{tempF}
+        <span className="italic text-blue-500">Tempreture:</span> {tempC}°C/
+        {tempF}
         °F
       </p>
-      <p>Humidity: {humidity}%</p>
-      <p>Wind Speed: {windSpeed} KPH</p>
+      <p>
+        <span className="italic text-blue-500">Humidity:</span> {humidity}%
+      </p>
+      <p>
+        <span className="italic text-blue-500">Wind Speed:</span> {windSpeed}{" "}
+        KPH
+      </p>
     </div>
   );
 }

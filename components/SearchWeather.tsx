@@ -121,7 +121,7 @@ export default function SearchWeather() {
             }}
             type="text"
             placeholder="Enter city name...."
-            className="w-full max-w-[80%] rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full max-w-[80%] rounded-md border border-gray-300 p-2 text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <SearchButton onClick={searchCityWeather} />
         </div>

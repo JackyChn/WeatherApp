@@ -3,7 +3,7 @@ import React from "react";
 
 export default function WeatherInfoPlaceHolder() {
   return (
-    <div className="flex flex-wrap items-center justify-center mt-10">
+    <div className="mt-10 flex flex-wrap items-center justify-center">
       <div>
         <Image
           src={"/Weather.png"}
@@ -11,7 +11,7 @@ export default function WeatherInfoPlaceHolder() {
           width={100}
           height={100}
         />
-        <p className="mt-4 text-center">Search Weather</p>
+        <p className="mt-4 text-center text-black">Search Weather</p>
       </div>
     </div>
   );
