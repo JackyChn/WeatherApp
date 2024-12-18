@@ -24,6 +24,7 @@ interface CityWeatherInfoProps {
 }
 
 export default function SearchWeather() {
+  const [bgType, setBgType] = useState<string>("Sunny");
   const [city, setCity] = useState<string>("");
   const [cityWeatherInfo, setCityWeatherInfo] = useState<CityWeatherInfoProps>({
     tempC: "",
@@ -39,7 +40,6 @@ export default function SearchWeather() {
   const [isCityExsits, setIsCityExsits] = useState<boolean>(true);
   const [officialName, setOfficialName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const dispatch = useDispatch();
 
   const searchCityWeather = async () => {
     setIsLoading(true); // Start loading
@@ -47,7 +47,6 @@ export default function SearchWeather() {
       const cityInfo = await getWeatherInfo({ city });
 
       if (cityInfo === false) {
-        console.error("City not found or invalid response");
         setIsCityExsits(false);
         setCityWeatherInfo({
           tempC: "",
@@ -77,7 +76,7 @@ export default function SearchWeather() {
 
       setCityWeatherInfo(filteredWeatherInfo);
       console.log(filteredWeatherInfo.condition.text);
-      // dispatch(mutateWeather(filteredWeatherInfo.condition.text));
+      setBgType(getBgType(filteredWeatherInfo.condition.text));
       setOfficialName(cityInfo.location.name);
       setIsCityExsits(true);
     } catch (error) {
@@ -89,23 +88,26 @@ export default function SearchWeather() {
 
   return (
     <>
-      {/* Background Image */}
+      {/* background image */}
       <Image
-        src={"/Sunny.jpg"}
+        src={`/${bgType}.jpg`}
         alt="Background"
+        key={bgType}
         fill
         priority
-        className="z-[-10] object-cover"
+        className="z-[-10] object-cover transition-all duration-500 ease-in-out"
       />
+
+      {/* main */}
       <div className="h-80 w-96 rounded-xl border-2 border-blue-300 bg-blue-100 bg-opacity-80">
         <div className="mt-6 flex w-full items-center justify-center">
-          {/* Enter keydown listener to the input */}
+          {/* enter keydown listener to the input */}
           <input
             required
             onChange={(e) => setCity(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                searchCityWeather(); // Trigger the search on Enter key
+                searchCityWeather(); // trigger the search on Enter key
               }
             }}
             type="text"
@@ -123,7 +125,7 @@ export default function SearchWeather() {
           cityWeatherInfo && (
             <div className="grid-cols-[170px, 1fr] mt-2 grid w-full items-center">
               <div className="mt-2 flex w-full items-center justify-center">
-                {/* Weather image and condition */}
+                {/* weather image and condition */}
                 {cityWeatherInfo.condition.icon && (
                   <div className="flex items-center">
                     <Image
@@ -135,14 +137,14 @@ export default function SearchWeather() {
                   </div>
                 )}
 
-                {/* City Description */}
+                {/* city Description */}
                 <CityDes
                   officialName={officialName}
                   weather={cityWeatherInfo.condition.text}
                 />
               </div>
 
-              {/* More Weather details */}
+              {/* more Weather details */}
               {cityWeatherInfo.humidity ? (
                 <CityWeatherDetail
                   tempC={cityWeatherInfo.tempC}
@@ -161,4 +163,46 @@ export default function SearchWeather() {
       </div>
     </>
   );
+}
+
+// categorize the weather
+function getBgType(weatherDescription: string) {
+  // make weather type text to lowercase
+  const lowerCaseDescription = weatherDescription.toLowerCase();
+
+  // sunny
+  if (
+    lowerCaseDescription.includes("sunny") ||
+    lowerCaseDescription.includes("clear")
+  ) {
+    return "Sunny";
+  }
+
+  // cloudy
+  if (
+    lowerCaseDescription.includes("cloudy") ||
+    lowerCaseDescription.includes("overcast") ||
+    lowerCaseDescription.includes("Fog") ||
+    lowerCaseDescription === "Mist"
+  ) {
+    return "Cloudy";
+  }
+
+  // rainy
+  if (
+    lowerCaseDescription.includes("rain") ||
+    lowerCaseDescription.includes("drizzle")
+  ) {
+    return "Rainy";
+  }
+
+  // snowy
+  if (
+    lowerCaseDescription.includes("snow") ||
+    lowerCaseDescription === "Blizzard"
+  ) {
+    return "Snowy";
+  }
+
+  return "Unkonwn";
 }
