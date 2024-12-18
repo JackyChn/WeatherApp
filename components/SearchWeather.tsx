@@ -99,7 +99,7 @@ export default function SearchWeather() {
         />
       ) : (
         <Image
-          src={`/Unknown.jpg`}
+          src={`/Unkonwn.jpg`}
           alt="Background"
           fill
           priority
