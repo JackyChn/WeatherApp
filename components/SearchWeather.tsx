@@ -38,6 +38,7 @@ export default function SearchWeather() {
   const [isCityExsits, setIsCityExsits] = useState<boolean>(true);
   const [officialName, setOfficialName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const dispatch = useDispatch();
 
   const searchCityWeather = async () => {
     setIsLoading(true); // Start loading
@@ -74,6 +75,8 @@ export default function SearchWeather() {
       };
 
       setCityWeatherInfo(filteredWeatherInfo);
+      console.log(filteredWeatherInfo.condition.text);
+      // dispatch(mutateWeather(filteredWeatherInfo.condition.text));
       setOfficialName(cityInfo.location.name);
       setIsCityExsits(true);
     } catch (error) {
@@ -84,69 +87,79 @@ export default function SearchWeather() {
   };
 
   return (
-    <div className="h-80 w-96 rounded-xl border-2 border-blue-300 bg-blue-100 bg-opacity-80">
-      <div className="mt-6 flex w-full items-center justify-center">
-        {/* Enter keydown listener to the input */}
-        <input
-          required
-          onChange={(e) => setCity(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              searchCityWeather(); // Trigger the search on Enter key
-            }
-          }}
-          type="text"
-          placeholder="Enter city name...."
-          className="w-full max-w-[80%] rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <SearchButton onClick={searchCityWeather} />
-      </div>
-
-      {isLoading ? (
-        <div className="flex h-full items-center justify-center">
-          <Spinner />
+    <>
+      {/* Background Image */}
+      <Image
+        src={"/Sunny.jpg"}
+        alt="Background"
+        fill
+        priority
+        className="z-[-10] object-cover"
+      />
+      <div className="h-80 w-96 rounded-xl border-2 border-blue-300 bg-blue-100 bg-opacity-80">
+        <div className="mt-6 flex w-full items-center justify-center">
+          {/* Enter keydown listener to the input */}
+          <input
+            required
+            onChange={(e) => setCity(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                searchCityWeather(); // Trigger the search on Enter key
+              }
+            }}
+            type="text"
+            placeholder="Enter city name...."
+            className="w-full max-w-[80%] rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <SearchButton onClick={searchCityWeather} />
         </div>
-      ) : (
-        cityWeatherInfo && (
-          <div className="grid-cols-[170px, 1fr] mt-2 grid w-full items-center">
-            <div className="mt-2 flex w-full items-center justify-center">
-              {/* Weather image and condition */}
-              {cityWeatherInfo.condition.icon && (
-                <div className="flex items-center">
-                  <Image
-                    src={`https:${cityWeatherInfo.condition.icon}`}
-                    alt="weather"
-                    width={120}
-                    height={70}
-                  />
-                </div>
-              )}
 
-              {/* City Name */}
-              <div className="flex flex-col items-center justify-center gap-y-2 px-4">
-                <p className="text-2xl font-semibold">{officialName}</p>
-                <p className="text-lg text-gray-700">
-                  {cityWeatherInfo.condition.text}
-                </p>
-              </div>
-            </div>
-
-            {/* More Weather details */}
-            {cityWeatherInfo.humidity ? (
-              <CityWeatherDetail
-                tempC={cityWeatherInfo.tempC}
-                tempF={cityWeatherInfo.tempF}
-                humidity={cityWeatherInfo.humidity}
-                windSpeed={cityWeatherInfo.windKph}
-              />
-            ) : (
-              <>
-                {isCityExsits ? <WeatherInfoPlaceHolder /> : <CityNotFound />}
-              </>
-            )}
+        {isLoading ? (
+          <div className="flex h-full items-center justify-center">
+            <Spinner />
           </div>
-        )
-      )}
-    </div>
+        ) : (
+          cityWeatherInfo && (
+            <div className="grid-cols-[170px, 1fr] mt-2 grid w-full items-center">
+              <div className="mt-2 flex w-full items-center justify-center">
+                {/* Weather image and condition */}
+                {cityWeatherInfo.condition.icon && (
+                  <div className="flex items-center">
+                    <Image
+                      src={`https:${cityWeatherInfo.condition.icon}`}
+                      alt="weather"
+                      width={120}
+                      height={70}
+                    />
+                  </div>
+                )}
+
+                {/* City Name */}
+                <div className="flex flex-col items-center justify-center gap-y-2 px-4">
+                  <p className="text-2xl font-semibold">{officialName}</p>
+                  <p className="text-lg text-gray-700">
+                    {cityWeatherInfo.condition.text}
+                  </p>
+                </div>
+              </div>
+
+              {/* More Weather details */}
+              {cityWeatherInfo.humidity ? (
+                <CityWeatherDetail
+                  tempC={cityWeatherInfo.tempC}
+                  tempF={cityWeatherInfo.tempF}
+                  humidity={cityWeatherInfo.humidity}
+                  windSpeed={cityWeatherInfo.windKph}
+                />
+              ) : (
+                <>
+                  {isCityExsits ? <WeatherInfoPlaceHolder /> : <CityNotFound />}
+                </>
+              )}
+            </div>
+          )
+        )}
+      </div>
+    </>
   );
 }
